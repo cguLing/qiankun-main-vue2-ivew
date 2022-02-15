@@ -3,19 +3,19 @@ const microApps = [
   {
     name: 'sub-cicd',
     entry: '//localhost:8010/subapp/sub-cicd', // process.env.VUE_APP_SUB_VUE,
-    icon: 'ios-cog-outline',
+    icon: 'ios-american-football-outline',
     container: '#subapp-viewport', // 子应用挂载的div
     title: '子应用1',
     activeRule: '/sub-cicd'
+  },
+  {
+    name: 'cicd',
+    entry: '//127.0.0.1:8020', // process.env.VUE_APP_SUB_VUE,
+    icon: 'ios-cog-outline',
+    container: '#subapp-viewport', // 子应用挂载的div
+    title: '大禹平台',
+    activeRule: '/cicd'
   }
-  // {
-  //   name: 'sub-vue',
-  //   entry: '//localhost:8020/subapp/sub-vue', // process.env.VUE_APP_SUB_VUE,
-  //   icon: 'ios-cog-outline',
-  //   container: '#subapp-viewport', // 子应用挂载的div
-  //   title: '子应用2',
-  //   activeRule: '/sub-vue'
-  // }
 ]
 const apps = microApps.map(item => {
   return {

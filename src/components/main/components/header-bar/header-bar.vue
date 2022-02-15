@@ -32,7 +32,7 @@ import './header-bar.less'
 export default {
   name: 'HeaderBar',
   components: {
-    // siderTrigger,
+    // siderTrigger
     // customBreadCrumb
   },
   props: {
