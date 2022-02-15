@@ -5,9 +5,10 @@
         <Avatar :src="userAvator"/>
       </Badge>
       <Icon :size="18" type="md-arrow-dropdown"></Icon>
-      <DropdownMenu slot="list">
+      <DropdownMenu style="min-width:120px" slot="list">
         <DropdownItem name="message">
-          消息中心<Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>
+          消息中心
+          <!-- <Badge style="margin-left: 5px;" :count="messageUnreadCount"></Badge> -->
         </DropdownItem>
         <DropdownItem name="logout">用户信息</DropdownItem>
         <DropdownItem name="logout">秘钥管理</DropdownItem>
@@ -44,7 +45,7 @@ export default {
     },
     message () {
       this.$router.push({
-        name: 'message_page'
+        name: 'message'
       })
     },
     handleClick (name) {

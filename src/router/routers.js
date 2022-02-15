@@ -1,6 +1,6 @@
 /* eslint-disable */
 // import Main from '@/components/main1'
-import { dynamicRouterAdd } from '@/libs/router-util' // ①添 引入加载菜单
+// import { dynamicRouterAdd } from '@/libs/router-util' // ①添 引入加载菜单
 
 /**
  * iview-admin中meta除了原生参数外可配置的参数:
@@ -36,7 +36,7 @@ export const otherRouter = [
       hideInMenu: false,
       notCache: true,
       title: '首页',
-      icon: ''
+      icon: 'ios-aperture-outline'
     },
     component: () => import('@/view/single-page/home')
   },{
@@ -121,12 +121,12 @@ export const otherRouter = [
 // }];
 
 // 作为Main组件的子页面展示并且在左侧菜单显示的路由写在appRouter里
-export const appRouter = [...dynamicRouterAdd()];
+// export const appRouter = [...dynamicRouterAdd()];
 
 export const routes = [
   ...otherRouter,
   // ...mainRouter,
-  ...appRouter
+  // ...appRouter
 ]
 
 // 所有上面定义的路由都要写在下面输出

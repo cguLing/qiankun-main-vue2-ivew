@@ -6,11 +6,11 @@
           <!-- <menu-item :name="item.name" :key="`menu-${item.name}`"><common-icon :type="item.meta.icon"/><span>{{ item.title }}</span></menu-item> -->
         <template v-if="item.children && item.children.length === 1">
           <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item"></side-menu-item>
-          <menu-item v-else :name="getNameOrHref(item, true)" :key="`menu-${item.children[0].name}`"><common-icon :type="item.children[0].meta.icon || ''"/><span>{{ showTitle(item.children[0]) }}</span></menu-item>
+          <menu-item v-else :name="getNameOrHref(item, true)" :key="`menu-${item.children[0].name}`" :class="currentPath==item.children[0].path?'nowMenu':''"><common-icon :type="item.children[0].meta.icon || ''" :size="25" :style="currentPath==item.children[0].path?'font-weight:bolder':''"/><span>{{ showTitle(item.children[0]) }}</span></menu-item>
         </template>
         <template v-else>
           <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item"></side-menu-item>
-          <menu-item v-else :name="getNameOrHref(item)" :key="`menu-${item.name}`"><common-icon :type="item.meta.icon || ''"/><span>{{ showTitle(item) }}</span></menu-item>
+          <menu-item v-else style="font-size:15px" :name="getNameOrHref(item)" :key="`menu-${item.name}`" :class="currentPath==item.path?'nowMenu':''"><common-icon :type="item.meta.icon || ''" :size="25" :style="currentPath==item.path?'font-weight:bolder':''"/><span>{{ showTitle(item) }}</span></menu-item>
         </template>
       </template>
     </Menu>
@@ -19,7 +19,9 @@
         <!-- <menu-item :name="item.name" :key="`menu-${item.name}`"><common-icon :type="item.meta.icon"/></menu-item> -->
         <collapsed-menu v-if="item.children && item.children.length > 1" @on-click="handleSelect" hide-title :root-icon-size="rootIconSize" :icon-size="iconSize" :theme="theme" :parent-item="item" :key="`drop-menu-${item.name}`"></collapsed-menu>
         <Tooltip transfer v-else :content="showTitle(item.children && item.children[0] ? item.children[0] : item)" placement="right" :key="`drop-menu-${item.name}`">
-          <a @click="handleSelect(getNameOrHref(item, true))" class="drop-menu-a" :style="{textAlign: 'center'}"><common-icon :size="rootIconSize" :color="textColor" :type="item.meta.icon || (item.children && item.children[0].meta.icon) || ''"/></a>
+          <a
+            @click="handleSelect(getNameOrHref(item, true))" class="drop-menu-a" :style="{textAlign: 'center'}">
+            <common-icon :size="rootIconSize" :color="textColor" :style="currentPath==item.path?'font-weight:bolder':''" :type="item.meta.icon || (item.children && item.children[0].meta.icon) || ''"/></a>
         </Tooltip>
       </template>
     </div>
@@ -54,7 +56,7 @@ export default {
     },
     rootIconSize: {
       type: Number,
-      default: 20
+      default: 25
     },
     iconSize: {
       type: Number,
@@ -68,6 +70,10 @@ export default {
     openNames: {
       type: Array,
       default: () => []
+    },
+    currentPath: {
+      type: String,
+      default: '/home'
     }
   },
   data () {
@@ -116,7 +122,7 @@ export default {
   mounted () {
     console.log('123-------')
     // console.log(this.routes)
-    console.log(this.menuList)
+    console.log(this.currentPath)
     console.log('123-------')
     this.openedNames = getUnion(this.openedNames, this.getOpenedNamesByActiveName(name))
   }
@@ -124,4 +130,14 @@ export default {
 </script>
 <style lang="less">
 @import './side-menu.less';
+// .menu >>> .ivu-menu-item {
+//   font-size: 30px;
+// }
+// .ivu-menu-item {
+//   font-size: 30px;
+// }
+.nowMenu {
+  font-weight: bolder;
+  color: #fff !important;
+}
 </style>

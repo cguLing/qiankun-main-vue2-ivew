@@ -8,7 +8,7 @@ export const menu = [
       hideInMenu: false,
       notCache: true,
       title: '首页',
-      icon: ''
+      icon: 'ios-apps-outline'
     }
   }
 ]

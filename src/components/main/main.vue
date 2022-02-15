@@ -12,13 +12,13 @@
     <Layout>
       <div :collapsed="collapsed" @mouseenter="handleCollapsedChange" @mouseleave="handleCollapsedChange" style="overflow: 'hidden';position: relative;top:0px;">
       <transition name="fade">
-      <Sider hide-trigger  collapsible :collapsed-width="64" v-model="collapsed" v-if="collapsed" class="left-sider" style="overflow: 'hidden';z-index: 100000;width: 64px; min-width: 64px; max-width: 640px; flex: 0 0 64px; left: 0px; top: 0px; bottom: 0px;height:100%">
-        <side-menu accordion ref="sideMenu" :collapsed="collapsed" @on-select="turnToPage(item)" :menu-list="routeList">
+      <Sider hide-trigger  collapsible :collapsed-width="60" v-model="collapsed" v-if="collapsed" class="left-sider" style="overflow: 'hidden';z-index: 100000;width: 60px; min-width: 60px; max-width: 600px; flex: 0 0 60px; left: 0px; top: 0px; bottom: 0px;height:100%">
+        <side-menu accordion ref="sideMenu" :collapsed="collapsed" @on-select="turnToPage(item)" :current-path="current" :menu-list="routeList">
           <sider-trigger :collapsed="collapsed" icon="md-menu"></sider-trigger>
         </side-menu>
       </Sider>
       <Sider hide-trigger collapsible v-else v-model="collapsed" class="left-sider" style="overflow: 'hidden';z-index: 100000;width: 270px; min-width: 270px; max-width: 270px; flex: 0 0 270px; overflow: hidden; left: 0px; top: 0px; bottom: 0px;height:100%">
-        <side-menu accordion ref="sideMenu" :collapsed="collapsed" @on-select="turnToPage" :menu-list="routeList">
+        <side-menu accordion ref="sideMenu" :collapsed="collapsed" @on-select="turnToPage" :current-path="current" :menu-list="routeList">
           <sider-trigger :collapsed="collapsed" icon="md-menu"></sider-trigger>
         </side-menu>
       </Sider>
@@ -27,14 +27,17 @@
       <Content class="main-content-con" style="padding-left: 64px;position: fixed;width:100%">
         <Layout class="main-layout-con">
           <Content class="content-wrapper">
-            <keep-alive>
+            <!-- <keep-alive> -->
               <slot></slot>
               <!-- <router-view/> -->
-            </keep-alive>
+            <!-- </keep-alive> -->
           </Content>
         </Layout>
       </Content>
     </Layout>
+    <Tooltip class="quick-ques" content="答疑POPO">
+       <Button class="rt-button" type="primary" shape="circle" icon="ios-chatbubbles-outline"></Button>
+    </Tooltip>
   </Layout>
 </template>
 <script>
@@ -188,5 +191,21 @@ export default {
 .ivu-menu-item {
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+</style>
+<style scoped>
+.quick-ques {
+  position: fixed;
+  bottom: 40px;
+  /* top: 160px; */
+  right: 30px;
+}
+.rt-button {
+  text-align: center;
+  z-index: 999;
+  cursor: pointer;
+  background-color: #183054;
+  border-color: #183054;
+  box-shadow: 0px 0px 10px rgb(150, 148, 148);
 }
 </style>

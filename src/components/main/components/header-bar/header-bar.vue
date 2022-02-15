@@ -11,6 +11,15 @@
           <img src="/assets/images/logo.png" class="sidebar-logo">一体化-Unite
       </MenuItem> -->
     </transition>
+    &emsp;&emsp;
+      <Dropdown trigger="click" style="margin-left: 20px" class="re-drop" @on-click="handleClick">
+          <span style="font-size:14px;color:#9dabc2;">项目</span>&emsp;
+          <span style="font-size:14px;color:#fff">{{proj_click}}</span>&emsp;
+          <Icon style="color:#fff" type="ios-arrow-down"></Icon>
+        <DropdownMenu slot="list">
+            <DropdownItem v-for="item in projects" :key="item" :name="item"><span style="font-size:14px;color:#fff">{{item}}</span></DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
     <div class="custom-content-con">
       <slot></slot>
     </div>
@@ -18,16 +27,22 @@
 </template>
 <script>
 // import siderTrigger from './sider-trigger'
-import customBreadCrumb from './custom-bread-crumb'
+// import customBreadCrumb from './custom-bread-crumb'
 import './header-bar.less'
 export default {
   name: 'HeaderBar',
   components: {
     // siderTrigger,
-    customBreadCrumb
+    // customBreadCrumb
   },
   props: {
     collapsed: Boolean
+  },
+  data () {
+    return {
+      proj_click: 'xxx项目',
+      projects: ['xxx项目', 'yyy项目', 'zzz项目']
+    }
   },
   computed: {
     // breadCrumbList () {
@@ -37,7 +52,18 @@ export default {
   methods: {
     handleCollpasedChange (state) {
       this.$emit('on-coll-change', state)
+    },
+    handleClick (pro) {
+      console.log(pro)
+      this.proj_click = pro
     }
   }
 }
 </script>
+<style scoped>
+.re-drop >>> .ivu-select-dropdown{
+  background-color: #183054;
+  top:59px !important;
+  border-radius:0 0 4px 4px;
+}
+</style>

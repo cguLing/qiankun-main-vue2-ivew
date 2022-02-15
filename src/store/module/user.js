@@ -11,7 +11,7 @@ import {
   getUnreadCount
 } from '@/api/user'
 import { setToken, getToken, localSave } from '@/libs/util'
-import { initRouter } from '@/libs/router-util' // ①添 引入加载菜单
+// import { initRouter } from '@/libs/router-util' // ①添 引入加载菜单
 
 export default {
   state: {
@@ -85,9 +85,9 @@ export default {
         }).then(res => {
           const data = res.data
           commit('setToken', data.token)
-          initRouter().then(response => {
-            resolve(response)
-          });
+          // initRouter().then(response => {
+          //   resolve(response)
+          // });
         }).catch(err => {
           reject(err)
         })

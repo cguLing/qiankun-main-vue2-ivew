@@ -13,7 +13,7 @@ import config from '@/config'
 import installPlugin from '@/plugin'
 import './index.less'
 import '@/assets/icons/iconfont.css'
-import { initRouter } from '@/libs/router-util' // ①新增  引入动态菜单渲染
+// import { initRouter } from '@/libs/router-util' // ①新增  引入动态菜单渲染
 
 // 实际打包时应该不引入mock
 /* eslint-disable */
@@ -50,9 +50,9 @@ const instance = new Vue({
   router,
   store,
   render: h => h(App),
-  mounted() {
-    initRouter(this);  // ①新增 调用方法,动态生成路由
-  }
+  // mounted() {
+  //   initRouter(this);  // ①新增 调用方法,动态生成路由
+  // }
 })
 
 // 定义loader方法，loading改变时，将变量赋值给App.vue的data中的isLoading

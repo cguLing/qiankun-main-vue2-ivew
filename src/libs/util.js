@@ -95,6 +95,7 @@ export const getRouteTitleHandled = (route) => {
 }
 
 export const showTitle = (item, vm) => {
+  console.log('**路由title**')
   if (!item.meta) return
   let { title, __titleIsFunction__ } = item.meta
   if (!title) return
@@ -103,6 +104,7 @@ export const showTitle = (item, vm) => {
     else if (__titleIsFunction__) title = item.meta.title
     else title = vm.$t(item.name)
   } else title = (item.meta && item.meta.title) || item.name
+  console.log(title)
   return title
 }
 

@@ -14,9 +14,9 @@ import {
 } from '@/libs/util'
 import { saveErrorLogger } from '@/api/data'
 import router from '@/router'
-import routers from '@/router/routers'
+// import routers from '@/router/routers'
 import config from '@/config'
-import { dynamicRouterAdd } from '@/libs/router-util' // ①添 引入加载菜单
+// import { dynamicRouterAdd } from '@/libs/router-util' // ①添 引入加载菜单
 const { homeName } = config
 
 const closePage = (state, route) => {
@@ -40,7 +40,7 @@ export default {
   getters: {
     // menuList: (state, getters, rootState) => getMenuByRouter(routers, rootState.user.access),
     errorCount: state => state.errorList.length,
-    menuList: (state, getters, rootState) => getMenuByRouter(dynamicRouterAdd(), rootState.user.access), // ①改 通过路由列表得到菜单列表
+    // menuList: (state, getters, rootState) => getMenuByRouter(dynamicRouterAdd(), rootState.user.access), // ①改 通过路由列表得到菜单列表
   },
   mutations: {
     updateMenuList(state, routes) { // ①添 接受前台数组，刷新菜单
