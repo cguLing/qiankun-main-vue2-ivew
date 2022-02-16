@@ -52,7 +52,7 @@ import siderTrigger from './sider-trigger'
 import HeaderBar from './components/header-bar'
 import DevOpsDoc from './components/doc'
 import User from './components/user'
-import { mapMutations, mapActions } from 'vuex'
+// import { mapMutations, mapActions } from 'vuex'
 import './main.less'
 import menuRouter from '@/router/menuRouter'
 import Loading from './components/loading'
@@ -71,8 +71,7 @@ export default {
       collapsed: true,
       current: '/home',
       menuRouter,
-      routeList: [],
-      loading_flag: false
+      routeList: []
     }
   },
   computed: {
@@ -81,21 +80,24 @@ export default {
     },
     userAvator () {
       return this.$store.state.user.avatorImgPath
+    },
+    loading_flag () {
+      return this.$store.state.app.loadingFlag
     }
   },
   methods: {
-    ...mapMutations([
-      // 'setBreadCrumb',
-      // 'setTagNavList',
-      // 'addTag',
-      // 'closeTag',
-      'setLocal',
-      'setHomeRoute'
-    ]),
-    ...mapActions([
-      'handleLogin',
-      'getUnreadMessageCount'
-    ]),
+    // ...mapMutations([
+    //   // 'setBreadCrumb',
+    //   // 'setTagNavList',
+    //   // 'addTag',
+    //   // 'closeTag',
+    //   'setLocal',
+    //   'setHomeRoute'
+    // ]),
+    // ...mapActions([
+    //   'handleLogin',
+    //   'getUnreadMessageCount'
+    // ]),
     turnToPage (router) {
       // const route = this.query(router)
       console.log('**选中的路由**')

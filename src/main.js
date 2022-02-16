@@ -73,6 +73,7 @@ const apps = microApps.map(item => {
 
 registerMicroApps(apps, {
   beforeLoad: app => {
+    store.commit('changeLoading', true);
     console.log('before load app.name====>>>>>', app.name)
   },
   beforeMount: [
@@ -82,6 +83,7 @@ registerMicroApps(apps, {
   ],
   afterMount: [
     app => {
+      store.commit('changeLoading', false);
       console.log('[LifeCycle] after mount %c%s', 'color: green;', app.name)
     }
   ],

@@ -33,6 +33,7 @@ export default {
     // tagNavList: [],
     homeRoute: {},
     local: localRead('local'),
+    loadingFlag: false,
     // errorList: [],
     // menuList: [],
     // hasReadErrorPage: false
@@ -43,6 +44,9 @@ export default {
     // menuList: (state, getters, rootState) => getMenuByRouter(dynamicRouterAdd(), rootState.user.access), // ①改 通过路由列表得到菜单列表
   },
   mutations: {
+    changeLoading(state, flag) {
+      state.loadingFlag=flag
+    },
     // updateMenuList(state, routes) { // ①添 接受前台数组，刷新菜单
     //   router.addRoutes(routes); // 动态添加路由
     //   // router.$addRoutes(routes); // 动态添加路由
