@@ -94,9 +94,6 @@ export default {
       else this.openedNames = this.getOpenedNamesByActiveName(name)
     },
     handleSelect (name) {
-      console.log('name------------------')
-      console.log(name)
-      console.log('name------------------')
       this.$emit('on-select', name)
     }
   },
@@ -120,10 +117,6 @@ export default {
     }
   },
   mounted () {
-    console.log('123-------')
-    // console.log(this.routes)
-    console.log(this.currentPath)
-    console.log('123-------')
     this.openedNames = getUnion(this.openedNames, this.getOpenedNamesByActiveName(name))
   }
 }

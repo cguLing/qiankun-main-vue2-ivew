@@ -27,7 +27,6 @@ const turnTo = (to, access, next) => {
 }
 
 router.beforeEach((to, from, next) => {
-  console.log(to)
   next()
   // iView.LoadingBar.start()
   // const token = getToken()

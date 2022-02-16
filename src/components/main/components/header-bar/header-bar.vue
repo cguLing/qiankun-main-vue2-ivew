@@ -54,7 +54,6 @@ export default {
       this.$emit('on-coll-change', state)
     },
     handleClick (pro) {
-      console.log(pro)
       this.proj_click = pro
     }
   }

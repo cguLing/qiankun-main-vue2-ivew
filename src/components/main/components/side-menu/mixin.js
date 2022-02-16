@@ -6,8 +6,6 @@ export default {
   },
   methods: {
     showTitle (item) {
-      // console.log('**title**')
-      // console.log(item)
       return showTitle(item, this)
     },
     showChildren (item) {

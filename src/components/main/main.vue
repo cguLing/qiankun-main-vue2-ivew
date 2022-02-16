@@ -87,10 +87,6 @@ export default {
   },
   methods: {
     // ...mapMutations([
-    //   // 'setBreadCrumb',
-    //   // 'setTagNavList',
-    //   // 'addTag',
-    //   // 'closeTag',
     //   'setLocal',
     //   'setHomeRoute'
     // ]),
@@ -99,11 +95,7 @@ export default {
     //   'getUnreadMessageCount'
     // ]),
     turnToPage (router) {
-      // const route = this.query(router)
-      console.log('**选中的路由**')
-      console.log(router)
       let name = {}
-      // let { name, params, query } = {}
       if (typeof router === 'string') name = router
       else {
         name = router.name
@@ -115,24 +107,7 @@ export default {
         return
       }
       history.pushState(null, name, name)
-      // this.$router.push({
-      //   name,
-      //   params,
-      //   query
-      // })
-      // console.log('rule*******************')
-      // console.log(this.current)
-      // console.log(rule[0].activeRule)
-      // console.log('rule*******************')
-      // history.pushState(null, rule[0].activeRule, rule[0].activeRule)
     },
-    // query (name) {
-    //   return this.microApps.filter(data => {
-    //     if (data.name === name) {
-    //       return data
-    //     }
-    //   })
-    // },
     handleCollapsedChange () {
       this.collapsed = !this.collapsed
     },
@@ -164,20 +139,7 @@ export default {
       })
     },
     initRoute () {
-      // this.routeList = this.menuRouter.concat(this.microApps.map((obj) => {
-      //   return {
-      //     path: obj.activeRule,
-      //     name: obj.name,
-      //     meta: {
-      //       hideInMenu: false,
-      //       title: obj.title,
-      //       icon: obj.icon
-      //     }
-      //   }
-      // }))
       this.routeList = this.menuRouter
-      console.log('**完整路由**')
-      console.log(this.routeList)
     }
   },
   created () {
