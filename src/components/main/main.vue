@@ -27,8 +27,14 @@
       <Content class="main-content-con" style="padding-left: 64px;position: fixed;width:100%">
         <Layout class="main-layout-con">
           <Content class="content-wrapper">
-            <!-- <keep-alive> -->
+            <div v-show="loading_flag">
+              <Loading />
+            </div>
+            <div v-show="!loading_flag">
               <slot></slot>
+            </div>
+            <!-- <keep-alive> -->
+              <!-- <slot></slot> -->
               <!-- <router-view/> -->
             <!-- </keep-alive> -->
           </Content>
@@ -47,10 +53,9 @@ import HeaderBar from './components/header-bar'
 import DevOpsDoc from './components/doc'
 import User from './components/user'
 import { mapMutations, mapActions } from 'vuex'
-// import minLogo from '@/assets/images/logo_min.png'
-// import maxLogo from '@/assets/images/logo.png'
 import './main.less'
 import menuRouter from '@/router/menuRouter'
+import Loading from './components/loading'
 export default {
   name: 'Main',
   components: {
@@ -58,16 +63,16 @@ export default {
     User,
     HeaderBar,
     DevOpsDoc,
-    siderTrigger
+    siderTrigger,
+    Loading
   },
   data () {
     return {
       collapsed: true,
-      // minLogo,
-      // maxLogo,
       current: '/home',
       menuRouter,
-      routeList: []
+      routeList: [],
+      loading_flag: false
     }
   },
   computed: {
@@ -80,12 +85,12 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'setBreadCrumb',
-      'setTagNavList',
-      'addTag',
+      // 'setBreadCrumb',
+      // 'setTagNavList',
+      // 'addTag',
+      // 'closeTag',
       'setLocal',
-      'setHomeRoute',
-      'closeTag'
+      'setHomeRoute'
     ]),
     ...mapActions([
       'handleLogin',
