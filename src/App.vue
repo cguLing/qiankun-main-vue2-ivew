@@ -3,7 +3,7 @@
     <!-- <router-view/> -->
     <Main>
       <router-view/>
-      <div id="subapp-viewport"></div>
+      <div id="subapp-viewport" style="height:100%"></div>
     </Main>
   </div>
 </template>

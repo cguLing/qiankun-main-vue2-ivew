@@ -24,13 +24,13 @@
       </Sider>
       </transition>
       </div>
-      <Content class="main-content-con" style="padding-left: 64px;position: fixed;width:100%">
+      <Content class="main-content-con" style="padding-left: 60px;position: fixed;width:100%">
         <Layout class="main-layout-con">
-          <Content class="content-wrapper">
-            <div v-show="loading_flag">
+          <Content class="content-wrapper" style="padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+            <div v-show="loading_flag" style="height:100%">
               <Loading />
             </div>
-            <div v-show="!loading_flag">
+            <div v-show="!loading_flag" style="height:100%">
               <slot></slot>
             </div>
             <!-- <keep-alive> -->
