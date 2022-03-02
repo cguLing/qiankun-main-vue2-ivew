@@ -25,18 +25,17 @@ export const otherRouter = [
     name: '_home',
     redirect: '/home',
     meta: {
+      hideInMenu: true,
       icon:''
     },
   }, 
   {
     path: '/home',
     name: 'home',
-    // redirect: '/home',
     meta: {
-      hideInMenu: false,
       notCache: true,
       title: '首页',
-      icon: 'ios-aperture-outline'
+      icon: 'ios-apps-outline'
     },
     component: () => import('@/view/single-page/home')
   },{
@@ -67,6 +66,7 @@ export const otherRouter = [
 }, {
   path: '/500',
   meta: {
+    hideInMenu: true,
     title: '500-服务端错误'
   },
   name: 'error_500',

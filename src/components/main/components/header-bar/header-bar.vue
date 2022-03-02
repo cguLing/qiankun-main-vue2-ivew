@@ -1,6 +1,6 @@
 <template>
   <div class="header-bar">
-    <!-- <sider-trigger :collapsed="collapsed" icon="md-menu" @on-change="handleCollpasedChange"></sider-trigger> -->
+    <!-- <sider-trigger :collapsed="collapsed" icon="ios-menu" @on-change="handleCollpasedChange"></sider-trigger> -->
     <!-- <custom-bread-crumb show-icon style="margin-left: 30px;" :list="breadCrumbList"></custom-bread-crumb> -->
     <transition name="sidebarLogoFade">
       <router-link key="expand" class="sidebar-logo-link" to="/">
@@ -12,7 +12,8 @@
       </MenuItem> -->
     </transition>
     &emsp;&emsp;
-      <Dropdown trigger="click" style="margin-left: 20px" class="re-drop" @on-click="handleClick">
+    <div class="project">
+      <Dropdown trigger="click" class="re-drop" @on-click="handleClick">
           <span style="font-size:14px;color:#9dabc2;">项目</span>&emsp;
           <span style="font-size:14px;color:#fff">{{proj_click}}</span>&emsp;
           <Icon style="color:#fff" type="ios-arrow-down"></Icon>
@@ -20,6 +21,7 @@
             <DropdownItem v-for="item in projects" :key="item" :name="item"><span style="font-size:14px;color:#fff">{{item}}</span></DropdownItem>
         </DropdownMenu>
       </Dropdown>
+    </div>
     <div class="custom-content-con">
       <slot></slot>
     </div>
@@ -62,7 +64,7 @@ export default {
 <style scoped>
 .re-drop >>> .ivu-select-dropdown{
   background-color: #183054;
-  top:59px !important;
+  top:35px !important;
   border-radius:0 0 4px 4px;
 }
 </style>

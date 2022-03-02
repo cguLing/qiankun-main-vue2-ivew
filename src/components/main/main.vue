@@ -12,31 +12,27 @@
     <Layout>
       <div :collapsed="collapsed" @mouseenter="handleCollapsedChange" @mouseleave="handleCollapsedChange" style="overflow: 'hidden';position: relative;top:0px;">
       <transition name="fade">
-      <Sider hide-trigger  collapsible :collapsed-width="60" v-model="collapsed" v-if="collapsed" class="left-sider" style="overflow: 'hidden';z-index: 100000;width: 60px; min-width: 60px; max-width: 600px; flex: 0 0 60px; left: 0px; top: 0px; bottom: 0px;height:100%">
+      <Sider hide-trigger  collapsible :collapsed-width="60" v-model="collapsed" v-if="collapsed" class="left-sider" style="width: 60px;">
         <side-menu accordion ref="sideMenu" :collapsed="collapsed" @on-select="turnToPage(item)" :current-path="current" :menu-list="routeList">
-          <sider-trigger :collapsed="collapsed" icon="md-menu"></sider-trigger>
+          <sider-trigger :collapsed="collapsed" icon="ios-menu"></sider-trigger>
         </side-menu>
       </Sider>
-      <Sider hide-trigger collapsible v-else v-model="collapsed" class="left-sider" style="overflow: 'hidden';z-index: 100000;width: 270px; min-width: 270px; max-width: 270px; flex: 0 0 270px; overflow: hidden; left: 0px; top: 0px; bottom: 0px;height:100%">
-        <side-menu accordion ref="sideMenu" :collapsed="collapsed" @on-select="turnToPage" :current-path="current" :menu-list="routeList">
-          <sider-trigger :collapsed="collapsed" icon="md-menu"></sider-trigger>
+      <Sider hide-trigger collapsible v-else v-model="collapsed" class="left-sider" style="width: 260px; min-width: 260px; max-width: 260px; flex: 0 0 260px; overflow: hidden;">
+        <side-menu accordion ref="sideMenu" :openList="openList" :collapsed="collapsed" @on-select="turnToPage" :current-path="current" :menu-list="routeList">
+          <sider-trigger :collapsed="collapsed" icon="ios-menu" @showList="showList"></sider-trigger>
         </side-menu>
       </Sider>
       </transition>
       </div>
-      <Content class="main-content-con" style="padding-left: 60px;position: fixed;width:100%">
+      <Content class="main-content-con" style="position: fixed;width:100%">
         <Layout class="main-layout-con">
-          <Content class="content-wrapper" style="padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+          <Content class="main-content-wrapper">
             <div v-show="loading_flag" style="height:100%">
               <Loading />
             </div>
-            <div v-show="!loading_flag" style="height:100%">
+            <div v-show="!loading_flag" style="height:100%;margin-left:60px">
               <slot></slot>
             </div>
-            <!-- <keep-alive> -->
-              <!-- <slot></slot> -->
-              <!-- <router-view/> -->
-            <!-- </keep-alive> -->
           </Content>
         </Layout>
       </Content>
@@ -54,7 +50,6 @@ import DevOpsDoc from './components/doc'
 import User from './components/user'
 // import { mapMutations, mapActions } from 'vuex'
 import './main.less'
-import menuRouter from '@/router/menuRouter'
 import Loading from './components/loading'
 export default {
   name: 'Main',
@@ -70,11 +65,14 @@ export default {
     return {
       collapsed: true,
       current: '/home',
-      menuRouter,
-      routeList: []
+      routeList: [],
+      openList: false
     }
   },
   computed: {
+    menuRouter () {
+      return this.$store.state.app.menuRouter
+    },
     unreadCount () {
       return this.$store.state.user.unreadCount
     },
@@ -83,6 +81,11 @@ export default {
     },
     loading_flag () {
       return this.$store.state.app.loadingFlag
+    }
+  },
+  watch: {
+    menuRouter () {
+      this.initRoute()
     }
   },
   methods: {
@@ -94,6 +97,11 @@ export default {
     //   'handleLogin',
     //   'getUnreadMessageCount'
     // ]),
+    showList () {
+      setTimeout(() => {
+        this.openList = true
+      }, 300)
+    },
     turnToPage (router) {
       let name = {}
       if (typeof router === 'string') name = router
@@ -109,6 +117,7 @@ export default {
       history.pushState(null, name, name)
     },
     handleCollapsedChange () {
+      if (this.collapsed) this.openList = false
       this.collapsed = !this.collapsed
     },
     bindCurrent () {

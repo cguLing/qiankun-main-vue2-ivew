@@ -1,5 +1,13 @@
 <template>
-  <a @click="handleChange" type="text" :class="['sider-trigger-a', collapsed ? '' : 'collapsed']"><Icon :type="icon" :size="size" /></a>
+  <div>
+    <a @click="handleChange" type="text" :class="['sider-trigger-a', collapsed ? '' : 'collapsed']">
+    <Icon :type="icon" :size="size" />
+    </a>
+    <a class="list" v-if="!collapsed" @mouseenter="handleShowList">
+      <span style="float:right;">服务列表
+      <Icon style="font-size:18px" type="ios-more" /></span>
+    </a>
+  </div>
 </template>
 <script>
 export default {
@@ -18,6 +26,9 @@ export default {
   methods: {
     handleChange () {
       this.$emit('on-change', !this.collapsed)
+    },
+    handleShowList () {
+      this.$emit('showList')
     }
   }
 }
