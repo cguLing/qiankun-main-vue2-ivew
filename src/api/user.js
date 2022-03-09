@@ -29,56 +29,18 @@ export const logout = (token) => {
   })
 }
 
-export const getUnreadCount = () => {
+export const getSystemSetting = (params) => {
   return axios.request({
-    url: 'message/count',
-    method: 'get'
-  })
-}
-
-export const getMessage = () => {
-  return axios.request({
-    url: 'message/init',
-    method: 'get'
-  })
-}
-
-export const getContentByMsgId = msg_id => {
-  return axios.request({
-    url: 'message/content',
+    url: '/api/v1/system/userAdmin',
     method: 'get',
-    params: {
-      msg_id
-    }
+    params
   })
 }
 
-export const hasRead = msg_id => {
+export const postSystemSetting = (data) => {
   return axios.request({
-    url: 'message/has_read',
-    method: 'post',
-    data: {
-      msg_id
-    }
-  })
-}
-
-export const removeReaded = msg_id => {
-  return axios.request({
-    url: 'message/remove_readed',
-    method: 'post',
-    data: {
-      msg_id
-    }
-  })
-}
-
-export const restoreTrash = msg_id => {
-  return axios.request({
-    url: 'message/restore',
-    method: 'post',
-    data: {
-      msg_id
-    }
+    url: '/api/v1/system/userAdmin',
+    method: 'put',
+    data
   })
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a @click="handleChange" type="text" :class="['sider-trigger-a', collapsed ? '' : 'collapsed']">
-    <Icon :type="icon" :size="size" />
+    <a type="text" :class="['sider-trigger-a', collapsed ? '' : 'collapsed']">
+      <Icon v-show="menuWay" :type="icon" :size="size" />
     </a>
     <a class="list" v-if="!collapsed" @mouseenter="handleShowList">
       <span style="float:right;">服务列表
@@ -21,6 +21,11 @@ export default {
     size: {
       type: Number,
       default: 24
+    },
+    menuWay: {
+      type: Boolean,
+      default: true,
+      required: true
     }
   },
   methods: {

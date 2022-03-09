@@ -28,8 +28,7 @@ export const otherRouter = [
       hideInMenu: true,
       icon:''
     },
-  }, 
-  {
+  }, {
     path: '/home',
     name: 'home',
     meta: {
@@ -38,16 +37,25 @@ export const otherRouter = [
       icon: 'ios-apps-outline'
     },
     component: () => import('@/view/single-page/home')
+  }, {
+    path: '/service',
+    name: 'service',
+    meta: {
+      notCache: true,
+      title: '服务登记',
+      icon: 'ios-list-box-outline'
+    },
+    component: () => import('@/view/service')
   },{
-  path: '/message',
-  name: 'message',
+  path: '/userInfo',
+  name: 'userInfo',
   meta: {
     hideInMenu: true,
-    title: '消息中心',
+    title: '用户信息',
     // notCache: true,
     // icon: 'md-home'
   },
-  component: () => import('@/view/single-page/message/index.vue')
+  component: () => import('@/view/userInfo/index.vue')
 },{
   path: '/login',
   name: 'login',
@@ -73,52 +81,6 @@ export const otherRouter = [
   component: () => import('@/view/error-page/500.vue')
 }
 ];
-
-// 作为Main组件的子页面展示但是不在左侧菜单显示的路由写在mainRouter里
-// export const mainRouter = [
-// {
-//   path: '/',
-//   name: '_home',
-//   redirect: '/home',
-//   component: Main,
-//   meta: {
-//     hideInMenu: true,
-//     notCache: true
-//   },
-//   children: [
-//     {
-//       path: '/home',
-//       name: 'home',
-//       meta: {
-//         hideInMenu: true,
-//         title: '首页',
-//         notCache: true,
-//         icon: 'md-home'
-//       },
-//       component: () => import('@/view/single-page/home')
-//     }
-//   ]
-// }, 
-// {
-//   path: '/message',
-//   name: 'message',
-//   component: Main,
-//   meta: {
-//     hideInBread: true,
-//     hideInMenu: true
-//   },
-//   children: [
-//     {
-//       path: 'message_page',
-//       name: 'message_page',
-//       meta: {
-//         icon: 'md-notifications',
-//         title: '消息中心'
-//       },
-//       component: () => import('@/view/single-page/message/index.vue')
-//     }
-//   ]
-// }];
 
 // 作为Main组件的子页面展示并且在左侧菜单显示的路由写在appRouter里
 // export const appRouter = [...dynamicRouterAdd()];

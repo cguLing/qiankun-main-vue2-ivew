@@ -3,11 +3,11 @@
     <Button
       :size="buttonSize"
       type="text"
-      style="background-color:#183054;"
+      style="background-color:#1e1e28;color:#fff"
       to="http://www.baidu.com"
       target="_blank">
       {{ title }}
-      <Icon type="md-help" style="margin:0 0px 3px -2px" />
+      <Icon type="md-bonfire" style="font-size:16px;margin:0 0px 3px -2px" />
     </Button>
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
   },
   data () {
     return {
-      title: '使用文档',
+      title: '新手引导',
       buttonSize: 'default'
     }
   }

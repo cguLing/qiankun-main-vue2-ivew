@@ -19,14 +19,6 @@ import '@/assets/icons/iconfont.css'
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock')
 
-import {
-  registerMicroApps,
-  addGlobalUncaughtErrorHandler,
-  start,
-  // setDefaultMountApp
-} from 'qiankun'
-import microApps from './micro/microApps'
-
 Vue.use(iView, {
   i18n: (key, value) => i18n.t(key, value)
 })
@@ -64,48 +56,67 @@ function loader (loading) {
 }
 
 // 给子应用配置加上loader方法
-const apps = microApps.map(item => {
-  return {
-    ...item,
-    loader
-  }
-})
 
-registerMicroApps(apps, {
-  beforeLoad: app => {
-    store.commit('changeLoading', true);
-    console.log('before load app.name====>>>>>', app.name)
-  },
-  beforeMount: [
-    app => {
-      console.log('[LifeCycle] before mount %c%s', 'color: green;', app.name)
-    }
-  ],
-  afterMount: [
-    app => {
-      store.commit('changeLoading', false);
-      console.log('[LifeCycle] after mount %c%s', 'color: green;', app.name)
-    }
-  ],
-  afterUnmount: [
-    app => {
-      console.log('[LifeCycle] after unmount %c%s', 'color: green;', app.name)
-    }
-  ]
+import {
+  microListGet,
+  serviceListGet
+} from "@/api/service"
+import {
+  registerMicroApps,
+  addGlobalUncaughtErrorHandler,
+  start,
+  // setDefaultMountApp
+} from 'qiankun'
+// import microApps from './micro/microApps'
+serviceListGet().then((res)=>{
+  store.commit('setServiceList',  res.data.data)
 })
-/**
- * 添加全局的未捕获异常处理器
- */
-addGlobalUncaughtErrorHandler((event) => {
-  console.error(event)
-  // const msg = event
-  // // 加载失败时提示
-  // if (msg && msg.includes('died in status LOADING_SOURCE_CODE')) {
-  //   console.error('微应用加载失败，请检查应用是否可运行')
-  // }
+microListGet().then((res)=>{
+  store.commit('setMicroApps',  res.data.data)
+  let microApps = require('./micro/microApps')
+  const apps = microApps.default.map(item => {
+    return {
+      ...item,
+      loader
+    }
+  })
+  
+  registerMicroApps(apps, {
+    beforeLoad: app => {
+      store.commit('changeLoading', true);
+      console.log('before load app.name====>>>>>', app.name)
+    },
+    beforeMount: [
+      app => {
+        console.log('[LifeCycle] before mount %c%s', 'color: green;', app.name)
+      }
+    ],
+    afterMount: [
+      app => {
+        store.commit('changeLoading', false);
+        console.log('[LifeCycle] after mount %c%s', 'color: green;', app.name)
+      }
+    ],
+    afterUnmount: [
+      app => {
+        console.log('[LifeCycle] after unmount %c%s', 'color: green;', app.name)
+      }
+    ]
+  })
+  /**
+   * 添加全局的未捕获异常处理器
+   */
+  addGlobalUncaughtErrorHandler((event) => {
+    console.error(event)
+    // const msg = event
+    // // 加载失败时提示
+    // if (msg && msg.includes('died in status LOADING_SOURCE_CODE')) {
+    //   console.error('微应用加载失败，请检查应用是否可运行')
+    // }
+  })
+  // setDefaultMountApp('/subapp/sub-cicd')
+  start({sandbox:{experimentalStyleIsolation:true}})
 })
-// setDefaultMountApp('/subapp/sub-cicd')
-start({sandbox:{experimentalStyleIsolation:true}})
 /**
  * 注册指令
  */

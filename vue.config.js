@@ -41,15 +41,15 @@ module.exports = {
     // headers: {
     //   'Access-Control-Allow-Origin': '*'
     // },
-    // proxy: {
-    //   '/sub-cicd': {
-    //     target: 'http://localhost:8010',
-    //     changeOrigin: true
-    //     // pathRewrite: {
-    //     //   ['^' + '/dev-ap']: ''
-    //     // }
-    //   }
-    // }
+    proxy: {
+      '/api/v1': {
+        target: 'http://localhost:9880',
+        changeOrigin: true
+        // pathRewrite: {
+        //   ['^' + '/dev-ap']: ''
+        // }
+      }
+    }
     // proxy: 'localhost:3000'
   }
 }

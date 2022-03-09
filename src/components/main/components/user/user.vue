@@ -6,11 +6,7 @@
       </Badge>
       <Icon :size="18" type="md-arrow-dropdown"></Icon>
       <DropdownMenu style="min-width:120px" slot="list">
-        <DropdownItem name="message">
-          消息中心
-          <!-- <Badge style="margin-left: 5px;" :count="messageUnreadCount"></Badge> -->
-        </DropdownItem>
-        <DropdownItem name="logout">用户信息</DropdownItem>
+        <DropdownItem name="userInfo">用户信息</DropdownItem>
         <DropdownItem name="logout">秘钥管理</DropdownItem>
         <DropdownItem name="logout">退出登录</DropdownItem>
       </DropdownMenu>
@@ -43,16 +39,14 @@ export default {
         })
       })
     },
-    message () {
-      this.$router.push({
-        name: 'message'
-      })
-    },
     handleClick (name) {
       switch (name) {
         case 'logout': this.logout()
           break
-        case 'message': this.message()
+        case 'userInfo':
+          this.$router.push({
+            name: 'userInfo'
+          })
           break
       }
     }
